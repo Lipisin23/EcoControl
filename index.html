@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2c3e50">
-    <link rel="icon" href="images/favico.svg" type="image/svg+xml">
-    <title>Eco Climate Control - Умная система контроля микроклимата | Купить</title>
+    <title>Eco Climate Control - Умная система контроля микроклимата</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Общие стили */
+        /* Базовые стили и сброс */
         * {
             margin: 0;
             padding: 0;
@@ -15,28 +15,42 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #2ecc71;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         body {
             background-color: #f5f5f5;
-            color: #333;
+            color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1rem;
         }
 
-        /* Шапка */
+        /* Навигация */
         header {
-            background-color: #2c3e50;
+            background-color: var(--primary);
             color: white;
-            padding: 15px 0;
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         .header-container {
@@ -46,12 +60,49 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
         }
 
         .logo span {
-            color: #3498db;
+            color: var(--secondary);
+            margin-left: 0.25rem;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--secondary);
+        }
+
+        /* Мобильное меню */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .menu-toggle span {
+            width: 2rem;
+            height: 0.25rem;
+            background: white;
+            border-radius: 10px;
+            transition: var(--transition);
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         nav ul {
@@ -60,104 +111,131 @@
         }
 
         nav ul li {
-            margin-left: 30px;
+            margin-left: 1.5rem;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
             font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
         }
 
-        nav ul li a:hover {
-            color: #3498db;
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
         }
 
         .cta-button {
-            background-color: #e74c3c;
+            background-color: var(--accent);
             color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s;
-            margin-left: 20px;
+            transition: var(--transition);
+            margin-left: 1.5rem;
             display: inline-block;
+            box-shadow: 0 4px 6px rgba(231, 76, 60, 0.2);
         }
 
         .cta-button:hover {
             background-color: #c0392b;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 6px 8px rgba(231, 76, 60, 0.3);
         }
 
-        /* Герой-секция */
+        /* Герой секция */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             text-align: center;
             color: white;
-            margin-top: 60px;
+            margin-top: 4rem;
             position: relative;
+            padding: 2rem 0;
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .hero p {
-            font-size: 22px;
-            margin-bottom: 30px;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
             font-weight: 300;
         }
 
         .hero-badges {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .badge {
             background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 14px;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
             backdrop-filter: blur(5px);
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn {
             display: inline-block;
-            background-color: #e74c3c;
+            background-color: var(--accent);
             color: white;
-            padding: 15px 40px;
-            border-radius: 30px;
+            padding: 0.75rem 2rem;
+            border-radius: 2rem;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s;
-            font-size: 18px;
-            margin: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             border: none;
             cursor: pointer;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
         }
 
         .btn:hover {
             background-color: #c0392b;
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
         .btn-secondary {
@@ -170,26 +248,24 @@
         }
 
         .price-tag {
-            margin-top: 20px;
-            font-size: 24px;
-            background: linear-gradient(45deg, #3498db, #2ecc71);
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--secondary), var(--success));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: bold;
         }
 
-        /* О системе */
-        .about {
-            padding: 100px 0;
-            background-color: white;
-            position: relative;
+        /* Секции */
+        section {
+            padding: 5rem 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
-            font-size: 36px;
-            color: #2c3e50;
+            margin-bottom: 3rem;
+            font-size: 2.25rem;
+            color: var(--dark);
             position: relative;
         }
 
@@ -198,213 +274,202 @@
             display: block;
             width: 80px;
             height: 4px;
-            background: linear-gradient(to right, #3498db, #2ecc71);
-            margin: 15px auto;
+            background: linear-gradient(to right, var(--secondary), var(--success));
+            margin: 1rem auto;
             border-radius: 2px;
         }
 
+        /* О системе */
+        .about {
+            background-color: white;
+        }
+
         .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
 
         .about-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 40px;
-        }
-
-        .benefits-list {
-            margin: 20px 0;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .benefit-icon {
-            color: #2ecc71;
-            margin-right: 15px;
-            font-size: 20px;
+            order: 1;
         }
 
         .about-image {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
+            order: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
 
         .about-image img {
             width: 100%;
             border-radius: 10px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .about-image img:hover {
             transform: scale(1.02);
         }
 
-        .stats-container {
+        .benefits-list {
+            margin: 1.5rem 0;
+        }
+
+        .benefit-item {
             display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-icon {
+            color: var(--success);
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
             text-align: center;
         }
 
         .stat-item {
-            padding: 20px;
+            padding: 1.5rem;
         }
 
         .stat-number {
-            font-size: 40px;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #3498db;
-            margin-bottom: 10px;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
         }
 
         /* Возможности */
         .features {
-            padding: 100px 0;
             background: linear-gradient(to bottom, #f9f9f9, #ffffff);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .feature-card {
             background-color: white;
-            padding: 30px;
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
-            border-top: 4px solid #3498db;
+            border-top: 4px solid var(--secondary);
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .feature-card:nth-child(2n) {
-            border-top-color: #2ecc71;
+            border-top-color: var(--success);
         }
 
         .feature-card:nth-child(3n) {
-            border-top-color: #e74c3c;
+            border-top-color: var(--accent);
         }
 
         .feature-icon {
-            font-size: 40px;
-            color: #3498db;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
         }
 
         .feature-card h3 {
-            margin-bottom: 15px;
-            color: #2c3e50;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
 
         /* Компоненты */
         .components {
-            padding: 100px 0;
             background-color: white;
         }
 
         .components-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .component-card {
             background-color: white;
-            padding: 25px;
+            padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             border: 1px solid #f1f1f1;
         }
 
         .component-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .component-card img {
             width: 100%;
             max-height: 200px;
             object-fit: contain;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
             border-radius: 8px;
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
 
         .component-card:hover img {
             transform: scale(1.05);
         }
 
-        .component-price {
-            color: #e74c3c;
-            font-weight: bold;
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
         /* Хаб */
         .hub {
-            padding: 100px 0;
             background: linear-gradient(to bottom, #ffffff, #f9f9f9);
         }
 
         .hub-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
 
         .hub-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 40px;
+            order: 2;
         }
 
         .hub-image {
-            flex: 1;
-            min-width: 300px;
+            order: 1;
             text-align: center;
-            position: relative;
         }
 
         .hub-image img {
             max-width: 100%;
             border-radius: 10px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         .hub-features {
-            margin-top: 30px;
+            margin-top: 2rem;
         }
 
         .hub-feature {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 15px;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
             background: #f9f9f9;
             border-radius: 8px;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .hub-feature:hover {
@@ -413,36 +478,39 @@
         }
 
         .hub-feature-icon {
-            font-size: 24px;
-            color: #3498db;
-            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-right: 1rem;
             min-width: 30px;
             text-align: center;
         }
 
         /* Отзывы */
         .testimonials {
-            padding: 100px 0;
-            background-color: #2c3e50;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .testimonials .section-title {
             color: white;
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .testimonial-card {
             background: rgba(255,255,255,0.1);
-            padding: 30px;
+            padding: 2rem;
             border-radius: 10px;
             backdrop-filter: blur(5px);
         }
 
         .testimonial-text {
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
             line-height: 1.8;
         }
 
@@ -455,104 +523,94 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #3498db;
+            background-color: var(--secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 1rem;
             font-weight: bold;
         }
 
         /* Цены */
         .pricing {
-            padding: 100px 0;
             background-color: white;
         }
 
         .pricing-options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
 
         .pricing-card {
             background: white;
             border-radius: 10px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem 2rem;
             text-align: center;
-            flex: 1;
-            min-width: 280px;
-            max-width: 350px;
             border: 1px solid #f1f1f1;
-            transition: all 0.3s;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
         .pricing-card.popular {
-            transform: scale(1.05);
-            border: 2px solid #3498db;
-            z-index: 1;
+            border: 2px solid var(--secondary);
+            transform: scale(1);
         }
 
         .pricing-card.popular:before {
             content: 'ПОПУЛЯРНЫЙ';
             position: absolute;
-            top: 15px;
-            right: -30px;
-            background: #3498db;
+            top: 1rem;
+            right: -2rem;
+            background: var(--secondary);
             color: white;
-            padding: 5px 30px;
-            font-size: 12px;
+            padding: 0.25rem 2rem;
+            font-size: 0.75rem;
             transform: rotate(45deg);
         }
 
         .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .price {
-            font-size: 40px;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #2c3e50;
-            margin: 20px 0;
+            color: var(--dark);
+            margin: 1.5rem 0;
         }
 
         .price span {
-            font-size: 16px;
+            font-size: 1rem;
             color: #7f8c8d;
         }
 
         .pricing-features {
             list-style: none;
-            margin: 20px 0;
+            margin: 1.5rem 0;
             text-align: left;
         }
 
         .pricing-features li {
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
         }
 
         .pricing-features li:before {
             content: '✓';
-            color: #2ecc71;
-            margin-right: 10px;
+            color: var(--success);
+            margin-right: 0.5rem;
             font-weight: bold;
         }
 
         /* CTA секция */
         .cta-section {
-            padding: 80px 0;
-            background: linear-gradient(45deg, #3498db, #2c3e50);
+            padding: 4rem 0;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
             color: white;
             text-align: center;
         }
@@ -563,17 +621,20 @@
         }
 
         .cta-title {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .cta-buttons {
-            margin-top: 30px;
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
         }
 
         /* Контакты */
         .contact {
-            padding: 100px 0;
             background-color: #f9f9f9;
             text-align: center;
         }
@@ -584,61 +645,56 @@
         }
 
         .contact-info h3 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--dark);
         }
 
         .contact-info p {
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
             color: #7f8c8d;
         }
 
         .contact-methods {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .contact-method {
             background: white;
-            padding: 30px;
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .contact-method:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .contact-icon {
-            font-size: 40px;
-            color: #3498db;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
         }
 
         /* FAQ */
         .faq {
-            padding: 100px 0;
             background-color: white;
         }
 
         .faq-item {
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
             border: 1px solid #f1f1f1;
             border-radius: 8px;
             overflow: hidden;
         }
 
         .faq-question {
-            padding: 20px;
+            padding: 1.5rem;
             background: #f9f9f9;
             cursor: pointer;
             font-weight: 500;
@@ -648,14 +704,14 @@
         }
 
         .faq-answer {
-            padding: 0 20px;
+            padding: 0 1.5rem;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s, padding 0.3s;
+            transition: var(--transition);
         }
 
         .faq-item.active .faq-answer {
-            padding: 20px;
+            padding: 1.5rem;
             max-height: 500px;
         }
 
@@ -663,26 +719,20 @@
         footer {
             background-color: #1a252f;
             color: white;
-            padding: 50px 0 30px;
+            padding: 3rem 0 1.5rem;
         }
 
         .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-column h4 {
-            margin-bottom: 20px;
-            font-size: 18px;
-            color: #3498db;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            color: var(--secondary);
         }
 
         .footer-links {
@@ -690,31 +740,31 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
         }
 
         .footer-links a {
             color: #ecf0f1;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: #3498db;
+            color: var(--secondary);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 2rem;
             border-top: 1px solid #2c3e50;
-            font-size: 14px;
+            font-size: 0.875rem;
             opacity: 0.8;
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .social-link {
@@ -725,65 +775,142 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .social-link:hover {
-            background: #3498db;
+            background: var(--secondary);
             transform: translateY(-3px);
         }
 
-        /* Адаптивность */
+        /* Адаптивность для планшетов */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .about-text {
+                order: 1;
+            }
+            
+            .about-image {
+                order: 2;
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid,
+            .components-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hub-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hub-text {
+                order: 1;
+            }
+            
+            .hub-image {
+                order: 2;
+            }
+            
+            .pricing-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1.05);
+            }
+            
+            .contact-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Адаптивность для десктопов */
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .components-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-options {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .contact-methods {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            nav ul li {
+                margin-left: 2rem;
+            }
+        }
+
+        /* Мобильное меню */
         @media (max-width: 768px) {
-            .header-container {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--primary);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
                 flex-direction: column;
                 text-align: center;
             }
-
-            nav ul {
-                margin-top: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
+            
             nav ul li {
-                margin: 5px 10px;
+                margin: 1rem 0;
             }
-
+            
             .cta-button {
-                margin: 15px 0 0;
+                margin: 1rem 0 0;
             }
-
-            .hero h1 {
-                font-size: 36px;
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg);
             }
-
-            .hero p {
-                font-size: 18px;
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
             }
-
-            .about-content,
-            .hub-content {
-                flex-direction: column;
-            }
-
-            .about-text,
-            .hub-text {
-                padding-right: 0;
-                margin-bottom: 30px;
-            }
-
-            .stats-container {
-                flex-direction: column;
-            }
-
-            .pricing-card.popular {
-                transform: scale(1);
-                margin: 20px 0;
-            }
-
-            .pricing-card.popular:hover {
-                transform: translateY(-10px);
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg);
             }
         }
     </style>
@@ -792,7 +919,16 @@
     <!-- Шапка -->
     <header>
         <div class="container header-container">
-            <div class="logo">Eco <span>Climate Control</span></div>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>Eco <span>Climate Control</span>
+            </div>
+            
+            <button class="menu-toggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <nav>
                 <ul>
                     <li><a href="#about">О системе</a></li>
@@ -801,8 +937,8 @@
                     <li><a href="#testimonials">Отзывы</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
+                <a href="#pricing" class="cta-button">Купить сейчас</a>
             </nav>
-            <a href="#pricing" class="cta-button">Купить сейчас</a>
         </div>
     </header>
 
@@ -818,7 +954,7 @@
                 <div class="badge">Снижение заболеваемости</div>
             </div>
 
-            <div>
+            <div class="btn-container">
                 <a href="#pricing" class="btn">Заказать систему</a>
                 <a href="#features" class="btn btn-secondary">Подробнее</a>
             </div>
@@ -837,19 +973,19 @@
 
                     <div class="benefits-list">
                         <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
                             <div>Улучшает концентрацию и продуктивность на 25%</div>
                         </div>
                         <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
                             <div>Снижает риск респираторных заболеваний</div>
                         </div>
                         <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
                             <div>Экономит энергию за счет умного контроля температуры</div>
                         </div>
                         <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
                             <div>Работает полностью автономно без вашего вмешательства</div>
                         </div>
                     </div>
@@ -857,10 +993,8 @@
                     <a href="#pricing" class="btn">Выбрать комплектацию</a>
                 </div>
                 <div class="about-image">
-                    <img src="images/hub.png" alt="Контролер системы">
-                </div>
-                <div class="about-image">
-                    <img src="images/window-driver.png" alt="Привод системы">
+                    <img src="https://via.placeholder.com/400x300?text=Контроллер+системы" alt="Контролер системы">
+                    <img src="https://via.placeholder.com/400x300?text=Привод+системы" alt="Привод системы">
                 </div>
             </div>
 
@@ -883,32 +1017,32 @@
             <h2 class="section-title">Почему выбирают нашу систему</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🌬️</div>
+                    <div class="feature-icon"><i class="fas fa-wind"></i></div>
                     <h3>Автопроветривание</h3>
                     <p>Система сама открывает окно при превышении уровня CO₂, создавая здоровую атмосферу без сквозняков и переохлаждения.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Полный мониторинг</h3>
                     <p>Следите за CO₂, температурой, влажностью внутри и снаружи помещения, а также за атмосферным давлением и УФ-индексом.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Умное управление</h3>
                     <p>Контролируйте систему из любой точки мира через Telegram-бота. Получайте уведомления и изменяйте настройки одним сообщением.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🌤️</div>
+                    <div class="feature-icon"><i class="fas fa-cloud-sun"></i></div>
                     <h3>Прогноз погоды</h3>
                     <p>Умный анализ изменений атмосферного давления позволяет accurately предсказывать осадки на ближайшие 12-24 часа.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">💾</div>
+                    <div class="feature-icon"><i class="fas fa-database"></i></div>
                     <h3>Архив данных</h3>
                     <p>Все показатели автоматически сохраняются в Google-таблицах для последующего анализа и выявления закономерностей.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
+                    <div class="feature-icon"><i class="fas fa-tools"></i></div>
                     <h3>Простая установка</h3>
                     <p>Монтаж системы занимает менее 2 часов. Подробная инструкция и поддержка помогут настроить все без специалиста.</p>
                 </div>
@@ -922,12 +1056,12 @@
             <h2 class="section-title">Комплектация системы</h2>
             <div class="components-grid">
                 <div class="component-card">
-                    <img src="images/hub.png" alt="Контролер">
+                    <img src="https://via.placeholder.com/300x200?text=Контроллер" alt="Контролер">
                     <h3>Контролер</h3>
                     <p>Мозг системы с цветным дисплеем для отображения показателей</p>
                 </div>
                 <div class="component-card">
-                    <img src="images/window-driver.png" alt="Умный привод окна">
+                    <img src="https://via.placeholder.com/300x200?text=Умный+привод" alt="Умный привод окна">
                     <h3>Умный привод окна</h3>
                     <p>Устройство для автоматического открывания и закрывания окон</p>
                 </div>
@@ -945,21 +1079,21 @@
 
                     <div class="hub-features">
                         <div class="hub-feature">
-                            <div class="hub-feature-icon">📱</div>
+                            <div class="hub-feature-icon"><i class="fas fa-desktop"></i></div>
                             <div>
                                 <h4>Интуитивный интерфейс</h4>
                                 <p>Четкое отображение всех параметров на красивом цветном экране с возможностью ручного управления</p>
                             </div>
                         </div>
                         <div class="hub-feature">
-                            <div class="hub-feature-icon">⚙️</div>
+                            <div class="hub-feature-icon"><i class="fas fa-cog"></i></div>
                             <div>
                                 <h4>Гибкие настройки</h4>
                                 <p>Настройте персональные параметры для каждого помещения под ваши потребности</p>
                             </div>
                         </div>
                         <div class="hub-feature">
-                            <div class="hub-feature-icon">🔌</div>
+                            <div class="hub-feature-icon"><i class="fas fa-wifi"></i></div>
                             <div>
                                 <h4>Простое подключение</h4>
                                 <p>Подключите систему к Wi-Fi за 2 минуты и начинайте пользоваться сразу после настройки</p>
@@ -968,7 +1102,7 @@
                     </div>
                 </div>
                 <div class="hub-image">
-                    <img src="images/hub.png" alt="Контролер">
+                    <img src="https://via.placeholder.com/500x400?text=Контроллер+Eco+Climate" alt="Контролер">
                 </div>
             </div>
         </div>
@@ -977,7 +1111,7 @@
     <!-- Отзывы -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Что говорят наши клиенты</h2>
+            <h2 class="section-title">Что говорят наши клиенты</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
@@ -1118,21 +1252,21 @@
 
             <div class="contact-methods">
                 <div class="contact-method">
-                    <div class="contact-icon">📧</div>
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h4>Электронная почта</h4>
                     <p>Напишите нам, и мы ответим в течение 24 часов</p>
-                    <p><a href="mailto:matvey.kotenko.88@bk.ru" style="color: #3498db;">matvey.kotenko.88@bk.ru</a></p>
+                    <p><a href="mailto:info@ecoclimate.ru">info@ecoclimate.ru</a></p>
                 </div>
 
                 <div class="contact-method">
-                    <div class="contact-icon">📱</div>
+                    <div class="contact-icon"><i class="fab fa-telegram"></i></div>
                     <h4>Telegram</h4>
                     <p>Напишите в Telegram для быстрого ответа</p>
-                    <p><a href="https://t.me/ITdealTiMaMaTvEy" style="color: #3498db;">@ITdealTiMaMaTvEy</a></p>
+                    <p><a href="https://t.me/ecoclimate_support">@ecoclimate_support</a></p>
                 </div>
 
                 <div class="contact-method">
-                    <div class="contact-icon">🕒</div>
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
                     <h4>Время работы</h4>
                     <p>Пн-Пт: 9:00 - 20:00</p>
                     <p>Сб-Вс: 12:00 - 15:00</p>
@@ -1148,6 +1282,12 @@
                 <div class="footer-column">
                     <h4>Eco Climate Control</h4>
                     <p>Умная система для контроля микроклимата в вашем помещении</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
 
                 <div class="footer-column">
@@ -1155,6 +1295,8 @@
                     <ul class="footer-links">
                         <li><a href="#hub">Контролер</a></li>
                         <li><a href="#pricing">Комплектации</a></li>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#components">Компоненты</a></li>
                     </ul>
                 </div>
 
@@ -1163,6 +1305,8 @@
                     <ul class="footer-links">
                         <li><a href="#">Техническая поддержка</a></li>
                         <li><a href="#faq">Частые вопросы</a></li>
+                        <li><a href="#">Инструкции</a></li>
+                        <li><a href="#">Скачать приложение</a></li>
                     </ul>
                 </div>
 
@@ -1171,19 +1315,38 @@
                     <ul class="footer-links">
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#contact">Контакты</a></li>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Гарантия</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="copyright">
-                <p>&copy; 2025 Eco Climate Control - Система контроля микроклимата. Все права защищены.</p>
-                <p>Разработано Матвеем Котенко в рамках проекта "ТехноСтартАп"</p>
-                <p>Команда "IT-сделка"</p>
+                <p>&copy; 2023 Eco Climate Control - Система контроля микроклимата. Все права защищены.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Мобильное меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
         // Плавная прокрутка для якорных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1206,22 +1369,43 @@
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
-                item.classList.toggle('active');
-
-                const plusSign = question.querySelector('span');
-                plusSign.textContent = item.classList.contains('active') ? '−' : '+';
+                const isActive = item.classList.contains('active');
+                
+                // Закрываем все открытые вопросы
+                document.querySelectorAll('.faq-item').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Открываем текущий, если он был закрыт
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
         });
 
-        // Обратный отсчет для акции
-        function updateCountdown() {
-            // Можно добавить таймер акции, если нужно
-        }
+        // Анимация при скролле
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .component-card, .pricing-card, .stat-item');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                
+                if (position.top < window.innerHeight - 100) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
 
-        // Инициализация при загрузке
-        window.addEventListener('DOMContentLoaded', () => {
-            updateCountdown();
+        // Инициализация анимации
+        document.querySelectorAll('.feature-card, .component-card, .pricing-card, .stat-item').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
